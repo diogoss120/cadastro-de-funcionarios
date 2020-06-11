@@ -1,0 +1,10 @@
+B:\Projetos\AgendaTelefonica\AgendaTelefonica\bin\Debug\AgendaTelefonica.exe.config
+B:\Projetos\AgendaTelefonica\AgendaTelefonica\bin\Debug\AgendaTelefonica.exe
+B:\Projetos\AgendaTelefonica\AgendaTelefonica\bin\Debug\AgendaTelefonica.pdb
+B:\Projetos\AgendaTelefonica\AgendaTelefonica\obj\Debug\AgendaTelefonica.csprojAssemblyReference.cache
+B:\Projetos\AgendaTelefonica\AgendaTelefonica\obj\Debug\AgendaTelefonica.Form1.resources
+B:\Projetos\AgendaTelefonica\AgendaTelefonica\obj\Debug\AgendaTelefonica.Properties.Resources.resources
+B:\Projetos\AgendaTelefonica\AgendaTelefonica\obj\Debug\AgendaTelefonica.csproj.GenerateResource.cache
+B:\Projetos\AgendaTelefonica\AgendaTelefonica\obj\Debug\AgendaTelefonica.csproj.CoreCompileInputs.cache
+B:\Projetos\AgendaTelefonica\AgendaTelefonica\obj\Debug\AgendaTelefonica.exe
+B:\Projetos\AgendaTelefonica\AgendaTelefonica\obj\Debug\AgendaTelefonica.pdb
