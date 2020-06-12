@@ -23,7 +23,10 @@ namespace AgendaTelefonica
                 comando.Parameters.AddWithValue("@rua", txtRua.Text);
                 comando.Parameters.AddWithValue("@bairro", txtBairro.Text);
                 comando.Parameters.AddWithValue("@cidade", txtCidade.Text);
+                comando.Parameters.AddWithValue("@sexo", txtSexo.Text);
                 comando.Parameters.AddWithValue("@id", controleID);
+                comando.Parameters.AddWithValue("@estadoCivil", estadoCivil.Text);
+                comando.Parameters.AddWithValue("@cep", txtCep.Text);
                 conexao.Open();
                 comando.ExecuteNonQuery();
                 conexao.Close();
@@ -31,7 +34,7 @@ namespace AgendaTelefonica
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + "erro no metodo InsersaoDeDados()");
                 conexao.Close();
             }
         }
@@ -40,10 +43,10 @@ namespace AgendaTelefonica
             string consulta = "";
             try
             {
-                if(opcaoCpfOuNome.Text == "Nome")
-                    consulta = "select nome, ddd, celular, cpf, salario, departamento, numCasa, rua, bairro, cidade, id from empregado where nome = @pesquisa";
+                if (opcaoCpfOuNome.Text == "Nome")
+                    consulta = "select nome, ddd, celular, cpf, salario, departamento, numCasa, rua, bairro, cidade, id, sexo, estadoCivil, cep from empregado where nome = @pesquisa";
                 else
-                    consulta = "select nome, ddd, celular, cpf, salario, departamento, numCasa, rua, bairro, cidade, id from empregado where cpf = @pesquisa";
+                    consulta = "select nome, ddd, celular, cpf, salario, departamento, numCasa, rua, bairro, cidade, id, sexo, estadoCivil, cep from empregado where cpf = @pesquisa";
 
 
                 SqlConnection conexao = new SqlConnection("Data Source=COROLA;Initial Catalog=dbAgenda;Integrated Security=True");
@@ -52,7 +55,7 @@ namespace AgendaTelefonica
                 conexao.Open();
                 SqlDataReader lista = comando.ExecuteReader();
                 if (lista.Read())
-                {   //ListaDeDados.Text = "Nome: "+ lista.GetString(0) +", Cpf:"+ lista.GetString(1) + "Cidade: "+lista.GetString(2);
+                {
                     txtPessoa.Text = lista.GetString(0);
                     txtdddPessoa.Text = lista.GetString(1);
                     txtNumero.Text = lista.GetString(2);
@@ -64,6 +67,9 @@ namespace AgendaTelefonica
                     txtBairro.Text = lista.GetString(8);
                     txtCidade.Text = lista.GetString(9);
                     controleID = (int)lista.GetSqlInt32(10); //para achar o Id do empregado
+                    txtSexo.Text = lista.GetString(11);
+                    estadoCivil.Text = lista.GetString(12);
+                    txtCep.Text = lista.GetSqlInt32(13).ToString();
                 }
                 else
                 {
@@ -74,7 +80,7 @@ namespace AgendaTelefonica
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " erro no metodo ConsultarDados()");
             }
         }
 
@@ -91,6 +97,69 @@ namespace AgendaTelefonica
             txtBairro.Text = "";
             txtCidade.Text = "";
             ListaDeDados.Text = "";
+            estadoCivil.Text = "";
+            txtSexo.Text = "";
+            txtCep.Text = "";
+            pesquisaNome.Text = "";
+        }
+
+        bool validarCampos()
+        {
+            string camposVazios = "";
+            if (txtPessoa.Text == "")
+                camposVazios += "nome, ";
+            if (txtdddPessoa.Text == "")
+                camposVazios += "DDD, ";
+            if (txtNumero.Text == "")
+                camposVazios += "número, ";
+            if (txtCpf.Text == "")
+                camposVazios += "cpf, ";
+            if (txtDepartamento.Text == "")
+                camposVazios += "departamento, ";
+            if (txtRua.Text == "")
+                camposVazios += "rua, ";
+            if (txtBairro.Text == "")
+                camposVazios += "bairro, ";
+            if (txtCidade.Text == "")
+                camposVazios += "cidade, ";
+            if (estadoCivil.Text == "")
+                camposVazios += "estado civíl, ";
+            if (txtSexo.Text == "")
+                camposVazios += "sexo, ";
+
+            try
+            {
+                double salario = double.Parse(txtSalario.Text);
+            }
+            catch
+            {
+                camposVazios += " salario, ";
+            }
+            try
+            {
+                double numeroDaCasa = double.Parse(numCasa.Text);
+            }
+            catch
+            {
+                camposVazios += " número da casa, ";
+            }
+            try
+            {
+                double cep = double.Parse(txtCep.Text);
+            }
+            catch
+            {
+                camposVazios += " cep ";
+            }
+
+            if (camposVazios != "")
+            {
+                camposVazios += " vazio ou inválido";
+                MessageBox.Show(camposVazios);
+                return false;
+            }
+            else
+                return true;
         }
         void acharUltimoId(ref int cont)
         {
@@ -98,19 +167,18 @@ namespace AgendaTelefonica
             try
             {
                 string ultimoId = "select MAX(id) from empregado";
-                //se der erro coloca a conexao aqui
                 SqlCommand comando = new SqlCommand(ultimoId, conexao);
                 comando.Parameters.AddWithValue("@pesquisa", pesquisaNome.Text);
                 conexao.Open();
                 SqlDataReader lista = comando.ExecuteReader();
                 if (lista.Read())
-                    cont = (int)lista.GetSqlInt32(0); //para achar o Id do empregado
+                    cont = (int)lista.GetSqlInt32(0);
                 conexao.Close();
             }
             catch (Exception erro)
             {
                 conexao.Close();
-                MessageBox.Show(erro.Message);
+                MessageBox.Show(erro.Message + " erro no metodo acharUltimoId()");
             }
         }
         void listagemDeNomes()
@@ -123,19 +191,18 @@ namespace AgendaTelefonica
                 try
                 {
                     string busca = "select nome, rua, bairro, cidade from empregado where id = @idDoIncremento";
-                    //se der erro coloca a conexao aqui
                     SqlCommand comando = new SqlCommand(busca, conexao);
                     comando.Parameters.AddWithValue("@idDoIncremento", i);
                     conexao.Open();
                     SqlDataReader lista = comando.ExecuteReader();
                     if (lista.Read())
-                        ListaDeDados.Text += lista.GetString(0) + ", " + lista.GetString(1) + ", " + lista.GetString(2) + ", " + lista.GetString(3)+"\n";
+                        ListaDeDados.Text += lista.GetString(0) + ", " + lista.GetString(1) + ", " + lista.GetString(2) + ", " + lista.GetString(3) + "\n";
                     conexao.Close();
                 }
                 catch (Exception erro)
                 {
                     conexao.Close();
-                    MessageBox.Show(erro.Message);
+                    MessageBox.Show(erro.Message + " erro no metodo ListagemDeNomes()");
                 }
             }
         }
@@ -151,13 +218,13 @@ namespace AgendaTelefonica
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            string insert1 = "insert into empregado values(@nome, @ddd, @contato, @cpf, @salario, @departamento, @numCasa, @rua, @bairro, @cidade)";
-            /*if (txtSalario.Text == "")
-                MessageBox.Show("Caixa salario vazia");
-            else*/
+            string insert1 = "insert into empregado values(@nome, @ddd, @contato, @cpf, @salario, @departamento, @numCasa, @rua, @bairro, @cidade, @sexo, @estadoCivil, @cep)";
             string msg = "Insert realizado";
-            InsersaoDeDados(insert1, msg);
-            LimparOpcoes();
+            if (validarCampos())
+            {
+                InsersaoDeDados(insert1, msg);
+                LimparOpcoes();
+            }
         }
 
         private void txtdddPessoa_TextChanged(object sender, EventArgs e)
@@ -187,10 +254,13 @@ namespace AgendaTelefonica
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            string update1 = "update empregado set nome = @nome, ddd = @ddd, celular = @contato, cpf = @cpf, salario = @salario, departamento = @departamento, numCasa = @numCasa, rua = @rua, bairro = @bairro, cidade = @cidade where id = @id";
+            string update1 = "update empregado set nome = @nome, ddd = @ddd, celular = @contato, cpf = @cpf, salario = @salario, departamento = @departamento, numCasa = @numCasa, rua = @rua, bairro = @bairro, cidade = @cidade, sexo = @sexo, estadoCivil = @estadoCivil, cep = @cep where id = @id";
             string msg = "Update realizado";
-            InsersaoDeDados(update1, msg);
-            LimparOpcoes();
+            if (validarCampos())
+            {
+                InsersaoDeDados(update1, msg);
+                LimparOpcoes();
+            }
         }
 
         private void btnApagar_Click(object sender, EventArgs e)
