@@ -6,7 +6,10 @@ namespace AgendaTelefonica
 {
     public partial class Form1 : Form
     {
+        //Variavel para armazenar o id do produto que será alterado ou apagado
         int controleID = 0;
+
+        //Método para fazer insert, update e delete no banco
         void InsersaoDeDados(string msg, string alerta)
         {
             SqlConnection conexao = new SqlConnection("Data Source=COROLA;Initial Catalog=dbAgenda;Integrated Security=True");
@@ -17,7 +20,7 @@ namespace AgendaTelefonica
                 comando.Parameters.AddWithValue("@ddd", txtdddPessoa.Text);
                 comando.Parameters.AddWithValue("@contato", txtNumero.Text);
                 comando.Parameters.AddWithValue("@cpf", txtCpf.Text);
-                comando.Parameters.AddWithValue("@salario", txtSalario.Text);
+                comando.Parameters.AddWithValue("@salario", txtSalario.Text.Replace(",","."));
                 comando.Parameters.AddWithValue("@departamento", txtDepartamento.Text);
                 comando.Parameters.AddWithValue("@numCasa", numCasa.Text);
                 comando.Parameters.AddWithValue("@rua", txtRua.Text);
@@ -38,6 +41,8 @@ namespace AgendaTelefonica
                 conexao.Close();
             }
         }
+
+        //Método para trazer os dados do banco e inserir no formulário
         void ConsultarDados()
         {
             string consulta = "";
@@ -51,8 +56,8 @@ namespace AgendaTelefonica
 
                 SqlConnection conexao = new SqlConnection("Data Source=COROLA;Initial Catalog=dbAgenda;Integrated Security=True");
                 SqlCommand comando = new SqlCommand(consulta, conexao);
-                comando.Parameters.AddWithValue("@pesquisa", pesquisaNome.Text);
-                conexao.Open();
+                comando.Parameters.AddWithValue("@pesquisa", pesquisaNome.Text);//"pesquisaNome" é a caixa de texto que será usada 
+                conexao.Open();                                                 //na clausula where para fazer a consulta
                 SqlDataReader lista = comando.ExecuteReader();
                 if (lista.Read())
                 {
@@ -66,7 +71,7 @@ namespace AgendaTelefonica
                     txtRua.Text = lista.GetString(7);
                     txtBairro.Text = lista.GetString(8);
                     txtCidade.Text = lista.GetString(9);
-                    controleID = (int)lista.GetSqlInt32(10); //para achar o Id do empregado
+                    controleID = (int)lista.GetSqlInt32(10); //passa o id do empregado para a variável controleId
                     txtSexo.Text = lista.GetString(11);
                     estadoCivil.Text = lista.GetString(12);
                     txtCep.Text = lista.GetSqlInt32(13).ToString();
@@ -84,6 +89,7 @@ namespace AgendaTelefonica
             }
         }
 
+        //O metodo LimparOpcoes coloca uma string vazia em todas as textBox
         void LimparOpcoes()
         {
             txtPessoa.Text = "";
@@ -103,6 +109,7 @@ namespace AgendaTelefonica
             pesquisaNome.Text = "";
         }
 
+        //O método validarCampos faz a validação de todos os textBox e comboBox, caso estejam invalidas ele inpede a alteração no banco
         bool validarCampos()
         {
             string camposVazios = "";
@@ -161,6 +168,9 @@ namespace AgendaTelefonica
             else
                 return true;
         }
+
+        //O médoto acharUltimoId faz um select na tabela empregado que retorna o id do ultimo produto
+        //esse método é importante porque o retorno dele será usado em um laço for que irá percorrer a tabela empregado
         void acharUltimoId(ref int cont)
         {
             SqlConnection conexao = new SqlConnection("Data Source=COROLA;Initial Catalog=dbAgenda;Integrated Security=True");
@@ -181,6 +191,8 @@ namespace AgendaTelefonica
                 MessageBox.Show(erro.Message + " erro no metodo acharUltimoId()");
             }
         }
+
+        //listagemDeNomes adiciona a caixa de texto "ListaDeDados" todos os cadastrados no banco
         void listagemDeNomes()
         {
             int cont = 0;
@@ -216,6 +228,8 @@ namespace AgendaTelefonica
         {
 
         }
+        
+        //Botão para salvar um novo cadastro
         private void button1_Click(object sender, EventArgs e)
         {
             string insert1 = "insert into empregado values(@nome, @ddd, @contato, @cpf, @salario, @departamento, @numCasa, @rua, @bairro, @cidade, @sexo, @estadoCivil, @cep)";
@@ -247,11 +261,15 @@ namespace AgendaTelefonica
 
         }
 
+
+        //Botão para para limpar as opções do cadastro *Atenção, não é para cancelar é para limpar as opções
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             LimparOpcoes();
         }
 
+
+        //Botão para atualizar a cadastro de algum funcionário já cadastrado
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
             string update1 = "update empregado set nome = @nome, ddd = @ddd, celular = @contato, cpf = @cpf, salario = @salario, departamento = @departamento, numCasa = @numCasa, rua = @rua, bairro = @bairro, cidade = @cidade, sexo = @sexo, estadoCivil = @estadoCivil, cep = @cep where id = @id";
@@ -263,6 +281,7 @@ namespace AgendaTelefonica
             }
         }
 
+        //Botão para apagar o cadastro do funcionário selecionado
         private void btnApagar_Click(object sender, EventArgs e)
         {
             string update1 = "delete from empregado where id = @id";
@@ -271,6 +290,7 @@ namespace AgendaTelefonica
             LimparOpcoes();
         }
 
+        //Botão para listar todos os usuários cadastrados na caixa de texto
         private void button1_Click_1(object sender, EventArgs e)
         {
             listagemDeNomes();

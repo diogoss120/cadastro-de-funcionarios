@@ -102,7 +102,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(41, 270);
+            this.label1.Location = new System.Drawing.Point(43, 270);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 20);
             this.label1.TabIndex = 3;
@@ -111,7 +111,7 @@
             // txtdddPessoa
             // 
             this.txtdddPessoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdddPessoa.Location = new System.Drawing.Point(44, 290);
+            this.txtdddPessoa.Location = new System.Drawing.Point(46, 290);
             this.txtdddPessoa.Name = "txtdddPessoa";
             this.txtdddPessoa.Size = new System.Drawing.Size(124, 27);
             this.txtdddPessoa.TabIndex = 4;
@@ -121,7 +121,7 @@
             // 
             this.Número.AutoSize = true;
             this.Número.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Número.Location = new System.Drawing.Point(174, 270);
+            this.Número.Location = new System.Drawing.Point(176, 270);
             this.Número.Name = "Número";
             this.Número.Size = new System.Drawing.Size(73, 20);
             this.Número.TabIndex = 5;
@@ -130,9 +130,9 @@
             // txtNumero
             // 
             this.txtNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumero.Location = new System.Drawing.Point(177, 290);
+            this.txtNumero.Location = new System.Drawing.Point(179, 290);
             this.txtNumero.Name = "txtNumero";
-            this.txtNumero.Size = new System.Drawing.Size(124, 27);
+            this.txtNumero.Size = new System.Drawing.Size(127, 27);
             this.txtNumero.TabIndex = 6;
             // 
             // TxtLabelCidade
@@ -204,7 +204,7 @@
             // btnPesquisar
             // 
             this.btnPesquisar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquisar.Location = new System.Drawing.Point(1020, 115);
+            this.btnPesquisar.Location = new System.Drawing.Point(1021, 110);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(51, 38);
             this.btnPesquisar.TabIndex = 18;
@@ -272,7 +272,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(172, 323);
+            this.label9.Location = new System.Drawing.Point(174, 323);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(115, 20);
             this.label9.TabIndex = 28;
@@ -281,16 +281,16 @@
             // txtSalario
             // 
             this.txtSalario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSalario.Location = new System.Drawing.Point(44, 343);
+            this.txtSalario.Location = new System.Drawing.Point(46, 343);
             this.txtSalario.Name = "txtSalario";
-            this.txtSalario.Size = new System.Drawing.Size(126, 27);
+            this.txtSalario.Size = new System.Drawing.Size(123, 27);
             this.txtSalario.TabIndex = 31;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(39, 323);
+            this.label10.Location = new System.Drawing.Point(41, 323);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 20);
             this.label10.TabIndex = 30;
@@ -307,9 +307,9 @@
             "Gerencia",
             "Financeiro",
             "Compras"});
-            this.txtDepartamento.Location = new System.Drawing.Point(176, 343);
+            this.txtDepartamento.Location = new System.Drawing.Point(178, 343);
             this.txtDepartamento.Name = "txtDepartamento";
-            this.txtDepartamento.Size = new System.Drawing.Size(126, 28);
+            this.txtDepartamento.Size = new System.Drawing.Size(128, 28);
             this.txtDepartamento.TabIndex = 32;
             // 
             // label11
@@ -416,7 +416,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(41, 216);
+            this.label13.Location = new System.Drawing.Point(42, 216);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(95, 20);
             this.label13.TabIndex = 43;
@@ -432,7 +432,7 @@
             "Divorciado(a)",
             "União estável",
             "Viuvo(a)"});
-            this.estadoCivil.Location = new System.Drawing.Point(45, 239);
+            this.estadoCivil.Location = new System.Drawing.Point(46, 239);
             this.estadoCivil.Name = "estadoCivil";
             this.estadoCivil.Size = new System.Drawing.Size(123, 28);
             this.estadoCivil.TabIndex = 44;
@@ -445,7 +445,7 @@
             "Masculino",
             "Feminino",
             "Outro"});
-            this.txtSexo.Location = new System.Drawing.Point(177, 239);
+            this.txtSexo.Location = new System.Drawing.Point(178, 239);
             this.txtSexo.Name = "txtSexo";
             this.txtSexo.Size = new System.Drawing.Size(128, 28);
             this.txtSexo.TabIndex = 45;
@@ -454,7 +454,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(174, 217);
+            this.label14.Location = new System.Drawing.Point(175, 217);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(46, 20);
             this.label14.TabIndex = 46;
