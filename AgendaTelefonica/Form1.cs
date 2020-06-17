@@ -232,11 +232,11 @@ namespace AgendaTelefonica
         //Botão para salvar um novo cadastro
         private void button1_Click(object sender, EventArgs e)
         {
-            string insert1 = "insert into empregado values(@nome, @ddd, @contato, @cpf, @salario, @departamento, @numCasa, @rua, @bairro, @cidade, @sexo, @estadoCivil, @cep)";
+            string insert = "insert into empregado values(@nome, @ddd, @contato, @cpf, @salario, @departamento, @numCasa, @rua, @bairro, @cidade, @sexo, @estadoCivil, @cep)";
             string msg = "Insert realizado";
             if (validarCampos())
             {
-                InsersaoDeDados(insert1, msg);
+                InsersaoDeDados(insert, msg);
                 LimparOpcoes();
             }
         }

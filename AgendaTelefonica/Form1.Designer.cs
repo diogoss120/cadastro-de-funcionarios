@@ -346,7 +346,7 @@
             // btnAtualizar
             // 
             this.btnAtualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtualizar.Location = new System.Drawing.Point(365, 390);
+            this.btnAtualizar.Location = new System.Drawing.Point(363, 390);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.Size = new System.Drawing.Size(118, 50);
             this.btnAtualizar.TabIndex = 36;
