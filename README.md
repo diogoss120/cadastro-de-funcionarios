@@ -1,4 +1,4 @@
-# cadastro-de-funcionarios
+## cadastro-de-funcionarios
 
 ### Projeto acadêmico de um Crud Windows Forms para cadastrar, apagar e atualizar o cadastro hipotético de funcionários de uma empresa
 
