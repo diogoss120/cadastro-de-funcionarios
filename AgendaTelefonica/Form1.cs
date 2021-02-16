@@ -169,7 +169,7 @@ namespace AgendaTelefonica
                 return true;
         }
 
-        //O médoto acharUltimoId faz um select na tabela empregado que retorna o id do ultimo produto
+        //O médoto acharUltimoId faz um select na tabela empregado que retorna o id do ultimo empregado
         //esse método é importante porque o retorno dele será usado em um laço for que irá percorrer a tabela empregado
         void acharUltimoId(ref int cont)
         {
